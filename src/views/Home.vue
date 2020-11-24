@@ -46,8 +46,8 @@ export default {
     stop() {
       this.isRun = "stop";
       const positionTop = this.$refs.busstop.getBoundingClientRect().top;
-      const point = Math.round(positionTop / 100) * -1;
-      const setTop = -2100;
+      const point = Math.round(positionTop / 50) * -1;
+      const setTop = -1050;
       this.transformToPoint = setTop;
       console.log(setTop, point, `${-2100 + setTop}`);
     },
@@ -78,7 +78,7 @@ export default {
 .roulette_wrap .spin_area {
   position: relative;
   width: 100px;
-  height: 100px;
+  height: 250px;
   border: 1px solid #000;
   overflow: hidden;
 }
@@ -104,16 +104,16 @@ export default {
     transform: translateY(-50px);
   }
   100% {
-    transform: translateY(-7050px);
+    transform: translateY(-3050px);
   }
 }
 
 .roulette_wrap .spin_area .spin_area_inner > span {
   display: block;
   width: 100px;
-  height: 100px;
-  font-size: 50px;
-  line-height: 100px;
+  height: 50px;
+  font-size: 25px;
+  line-height: 50px;
   font-weight: bold;
 }
 
