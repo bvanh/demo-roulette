@@ -1,5 +1,5 @@
 const api = {
-  ROOT: "localhost:5000/",
+  ROOT: "http://localhost:5000/",
   LIST_LOGIN: "listlogin",
 };
 
