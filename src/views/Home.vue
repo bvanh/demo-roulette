@@ -65,7 +65,7 @@ export default {
       await getListLogin(this, this.times);
       this.isRun = "";
       this.times += 1;
-      setTimeout(this.stop, 5000);
+      setTimeout(this.stop, 3000);
     },
   },
   created() {
