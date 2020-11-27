@@ -17,9 +17,9 @@
             </div>
           </div>
           <div class="button_area">
-            <a class="spin_stop" href="javascript:void(0)" @click="stop()"
+            <!-- <a class="spin_stop" href="javascript:void(0)" @click="stop()"
               >STOP</a
-            >
+            > -->
             <a class="spin_stop" href="javascript:void(0)" @click="start"
               >START</a
             >
@@ -117,10 +117,10 @@ export default {
 }
 @keyframes spin1_active {
   0% {
-    transform: translateY(0px);
+    transform: translateY(-4700px);
   }
   100% {
-    transform: translateY(-4700px);
+    transform: translateY(0px);
   }
 }
 
