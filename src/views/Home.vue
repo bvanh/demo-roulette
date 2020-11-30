@@ -11,9 +11,7 @@
                 transform: `translateY(${transformToPoint}px) !important`,
               }"
             >
-              <span v-for="item in items" :key="item.userid">{{
-                item.userid
-              }}</span>
+              <span v-for="item in items" :key="item.userid">{{ item.userid }}</span>
             </div>
           </div>
           <div class="button_area">
@@ -39,7 +37,7 @@ export default {
   name: "Home",
   data: () => ({
     isActive: "active",
-    isRun: "stop",
+    isRun: "default",
     transformToPoint: "",
     positionStop: 0,
     userWin: "",
@@ -109,6 +107,13 @@ export default {
   animation-iteration-count: infinite;
 }
 .roulette_wrap .spin_area .spin_area_inner.stop {
+  top: 1500px;
+  transition-duration: 4s !important;
+  transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation: none;
+  animation-duration: 4s;
+}
+.roulette_wrap .spin_area .spin_area_inner.default {
   top: -1500px;
   transition-duration: 4s !important;
   transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);

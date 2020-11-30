@@ -15,9 +15,9 @@ const getListLogin = (thisObj, time) => {
       const { data } = res.data;
       const newData = data.map((val, index) => ({
         ...val,
-        position: 1650 + (index + 1) * -50,
+        position: -1350 + (index + 1) * -50,
       }));
-      const random = Math.floor(Math.random() * (98 - 32) + 32);
+      const random = Math.floor(Math.random() * (70 - 3) + 3);
       console.log(newData[random], newData);
       thisObj.positionStop = newData[random];
       thisObj.items = newData;
