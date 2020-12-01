@@ -1,7 +1,7 @@
 <template>
   <div class="roulette_wrap">
     <div class="inner">
-      <div :class="`spin_item ${isActive}`">
+      <div :class="`spin_item active`">
         <div id="Spin1" class="spin_area">
           <div
             :class="`spin_area_inner ${isRun}`"
@@ -20,7 +20,10 @@
         </div>
       </div>
     </div>
-    <div class="button_area" @click="start">
+    <div
+      :class="[isSpin ? 'disable-spin button_area' : 'button_area']"
+      @click="start"
+    >
       <!-- <a class="spin_stop" href="javascript:void(0)" @click="start">START</a> -->
     </div>
   </div>
@@ -36,7 +39,7 @@ export default {
     getUserWin: Function,
   },
   data: () => ({
-    isActive: "active",
+    isSpin: false,
     isRun: "default",
     transformToPoint: "",
     positionStop: 0,
@@ -58,11 +61,13 @@ export default {
       setTimeout(() => {
         this.userWin = this.positionStop.userid;
         this.getUserWin(this.positionStop);
+        this.isSpin = false;
       }, 4000);
     },
     async start() {
       await getListLogin(this, this.times);
       this.isRun = "";
+      this.isSpin = true;
       this.times += 1;
       setTimeout(this.stop, 3000);
     },
@@ -98,6 +103,9 @@ export default {
     &:active {
       transform: translateX(-50%) scale(0.9);
     }
+  }
+  .disable-spin{
+    pointer-events: none;
   }
 }
 
