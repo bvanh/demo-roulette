@@ -2,11 +2,11 @@
   <div class="wrapper">
     <v-row>
       <v-col cols="6"
-        ><Roulette />
+        ><Roulette :getUserWin="getUsersWin" />
         <img src="../assets/banner.png" alt="banner" class="banner" />
       </v-col>
       <v-col cols="6">
-        <Result/>
+        <Result :listUsersWin="listUsersWin" />
       </v-col>
     </v-row>
   </div>
@@ -16,12 +16,20 @@
 
 //import "swiper/css/swiper.css";
 import Roulette from "../components/Roulette";
-import Result from '../components/Result'
+import Result from "../components/Result";
 export default {
   name: "Home",
+  data: () => ({
+    listUsersWin: [],
+  }),
+  methods: {
+    getUsersWin(user) {
+      this.listUsersWin = [...this.listUsersWin, user];
+    },
+  },
   components: {
     Roulette,
-    Result
+    Result,
   },
 };
 </script>

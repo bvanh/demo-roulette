@@ -10,18 +10,19 @@
               transform: `translateY(${transformToPoint}px) !important`,
             }"
           >
-            <span v-for="item in items" :key="item.userid">{{
-              item.userid
-            }}</span>
+            <span
+              v-for="item in items"
+              :key="item.userid"
+              :class="[userWin === item.userid ? 'win-alert' : '']"
+              >{{ item.userid }}</span
+            >
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="button_area">
-          <a class="spin_stop" href="javascript:void(0)" @click="start"
-            >START</a
-          >
-        </div> -->
+    <div class="button_area" @click="start">
+      <!-- <a class="spin_stop" href="javascript:void(0)" @click="start">START</a> -->
+    </div>
   </div>
 </template>
 <script>
@@ -31,6 +32,9 @@
 import { getListLogin } from "../api/baseApi";
 export default {
   name: "Roulette",
+  props: {
+    getUserWin: Function,
+  },
   data: () => ({
     isActive: "active",
     isRun: "default",
@@ -53,6 +57,7 @@ export default {
       this.transformToPoint = this.positionStop.position;
       setTimeout(() => {
         this.userWin = this.positionStop.userid;
+        this.getUserWin(this.positionStop);
       }, 4000);
     },
     async start() {
@@ -71,12 +76,29 @@ export default {
 <style  lang='scss'>
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import "./varibles.scss";
 .roulette_wrap {
   // margin: 100px;
   background: transparent url(../assets/bg_roulette.png) no-repeat center;
-  height: 30rem;
+  height: 50vh;
   background-size: contain;
   text-align: center;
+  position: relative;
+  .button_area {
+    background: transparent url(../assets/btn_spin.png) no-repeat center;
+    height: 40px;
+    width: 135px;
+    position: absolute;
+    bottom: 1.5rem;
+    z-index: 5;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: contain;
+    cursor: pointer;
+    &:active {
+      transform: translateX(-50%) scale(0.9);
+    }
+  }
 }
 
 .roulette_wrap .inner {
@@ -93,7 +115,7 @@ export default {
   width: 200px;
   height: 250px;
   overflow: hidden;
-  top: 9rem;
+  top: 7.5rem;
 }
 
 .roulette_wrap .spin_area .spin_area_inner {
@@ -129,21 +151,17 @@ export default {
 }
 
 .roulette_wrap .spin_area .spin_area_inner > span {
+  @extend .font-static;
   display: block;
   width: 150px;
   height: 50px;
   font-size: 25px;
   line-height: 50px;
-  font-family: "Roboto";
-  color: rgb(255, 245, 245);
-  //line-height: 0.762;
   text-align: center;
-  text-shadow: 0px 4px 2px rgba(128, 6, 0, 0.7);
-  -moz-transform: scale(1, 0.8);
-  -webkit-transform: scale(1, 0.8);
-  -ms-transform: scale(1, 0.8);
 }
-
+.win-alert {
+  color: #fdb845 !important;
+}
 .roulette_wrap .start_area {
   display: inline-block;
 }
