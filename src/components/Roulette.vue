@@ -25,6 +25,7 @@
   </div>
 </template>
 <script>
+//color: #fdb845;
 // @ is an alias to /src
 //import "swiper/css/swiper.css";
 import { getListLogin } from "../api/baseApi";
