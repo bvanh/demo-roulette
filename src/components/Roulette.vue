@@ -23,9 +23,12 @@
     <div
       :class="[isSpin ? 'disable-spin button_area' : 'button_area']"
       @click="start"
-    >
-      <!-- <a class="spin_stop" href="javascript:void(0)" @click="start">START</a> -->
-    </div>
+    ></div>
+    <img src="../assets/character_1.png" class="char-1" />
+    <img
+      src="../assets/frame_win.png"
+      :class="[isSpin ? 'frame-win' : 'frame-win frame-win-hight-light']"
+    />
   </div>
 </template>
 <script>
@@ -84,7 +87,7 @@ export default {
 @import "./varibles.scss";
 .roulette_wrap {
   // margin: 100px;
-  background: transparent url(../assets/bg_roulette.png) no-repeat center;
+  background: transparent url(../assets/bg_roulette2.png) no-repeat center;
   height: 50vh;
   background-size: contain;
   text-align: center;
@@ -104,8 +107,27 @@ export default {
       transform: translateX(-50%) scale(0.9);
     }
   }
-  .disable-spin{
+  .disable-spin {
     pointer-events: none;
+  }
+  .char-1,
+  .frame-win {
+    position: absolute;
+  }
+  .char-1 {
+    left: 2rem;
+    bottom: 55px;
+    width: 25%;
+    z-index: 2;
+  }
+  .frame-win {
+    left: 8.5rem;
+    bottom: 11.42rem;
+    width: 70%;
+    z-index: 1;
+  }
+  .frame-win-hight-light {
+    animation: hight-light 0.5s ease 0s infinite normal none running;
   }
 }
 
@@ -123,7 +145,7 @@ export default {
   width: 200px;
   height: 250px;
   overflow: hidden;
-  top: 7.5rem;
+  top: 9rem;
 }
 
 .roulette_wrap .spin_area .spin_area_inner {
@@ -149,15 +171,6 @@ export default {
   animation: none;
   animation-duration: 4s;
 }
-@keyframes spin1_active {
-  0% {
-    transform: translateY(-4700px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
 .roulette_wrap .spin_area .spin_area_inner > span {
   @extend .font-static;
   display: block;
@@ -172,5 +185,24 @@ export default {
 }
 .roulette_wrap .start_area {
   display: inline-block;
+}
+@keyframes spin1_active {
+  0% {
+    transform: translateY(-4700px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@keyframes hight-light {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.005, 1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
